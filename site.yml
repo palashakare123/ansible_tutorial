@@ -1,0 +1,10 @@
+---
+
+
+- hosts: db_servers
+  become: true
+  tasks:
+  - name: install mariadb package
+    package:
+      name: mariadb-server
+      state: latest
