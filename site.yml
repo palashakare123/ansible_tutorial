@@ -21,6 +21,14 @@
          - libapache2-mod-php
        state: latest
 
+  - name: copy default html files for site
+    tags: apache,apache2,ubuntu
+    copy: 
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
 - hosts: db_servers
   become: true
   tasks:
