@@ -3,3 +3,6 @@
  
 [db_servers]
 102.37.16.6 
+
+[workstations]
+102.37.218.31
