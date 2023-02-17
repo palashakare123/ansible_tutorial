@@ -6,8 +6,15 @@
   - name: install updates (ubuntu)
     tags: always
     apt:
-      upgrade: dist
       update_cache: yes
+    changed_when: false
+
+  - name: add ssh key for bittu
+    tags: always
+    authorized_key:
+      user: bittu
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGtt0cx2Nopmy5dWG5cqPMr0iksrCNWEDC19ZkC0w6eo ansible"
+
 
 - hosts: workstations
   become: true

@@ -1,0 +1,36 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates (ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create bittu user
+    tags: always
+    user:
+      name: bittu
+      groups: root
+
+  - name: add ssh key for bittu
+    tags: always
+    authorized_key:
+      user: bittu
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGtt0cx2Nopmy5dWG5cqPMr0iksrCNWEDC19ZkC0w6eo ansible"
+
+  - name: add sudoers file for bittu
+    tags: always
+    copy:
+      src: sudoer_bittu
+      dest: /etc/sudoers.d/bittu
+      owner: root
+      group: root
+      mode: 0440
+
